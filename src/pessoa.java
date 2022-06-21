@@ -1,18 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-
-
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Color;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -158,11 +152,9 @@ try {
 					
 					String sql ="select * from pessoa where nome=?";
 					Connection con = Conexao.faz_conexao();
-					//con = DriverManager.getConnection("jdbc:mysql://localhost/terra", "root", "");
 					PreparedStatement statement = con.prepareStatement(sql);
 					statement.setString(1, (String)nome1.getSelectedItem() );
 					ResultSet set = statement.executeQuery();
-					
 
 					while (set.next()) {
 				      id.setText(set.getString("id"));
@@ -170,25 +162,13 @@ try {
 				      sobrenome.setText(set.getString("sobrenome"));
 				      cpf.setText(set.getString("cpf"));
 				     
-				
-				      
-
-				     
-					 
-
-					  nome.setEnabled(true);
-				
-						
-						
+					  nome.setEnabled(true);	
 
 					}
 					
 				} catch (Exception e2) {
 					// TODO: handle exception
-				}
-				
-				
-				
+				}	
 			
 			}
 		});
@@ -214,18 +194,13 @@ try {
 						try {
 							Connection con2 = Conexao.faz_conexao();
 							String sql2 = "insert into pessoa(nome, sobrenome, cpf) value (?, ?, ?)";
-							
 							PreparedStatement stmt = con2.prepareStatement(sql2);
 							
 							stmt.setString(1, nome.getText());
 							stmt.setString(2, sobrenome.getText());
 							stmt.setString(3, cpf.getText());
 							
-
-							
-							
 							stmt.execute();
-							
 							stmt.close();
 							con2.close();
 							JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso!");
@@ -292,14 +267,8 @@ try {
 		btneditar.setEnabled(false);
 		panel.add(btneditar);
 		
-		
-		
 		nome1.setEnabled(false);
 		panel.add(nome1);
-		
-		
-		
-		
 		
 		JButton btnsair = new JButton("Sair");
 		btnsair.setBounds(209, 341, 89, 23);
@@ -339,13 +308,10 @@ try {
 					
 					String sql = "delete from pessoa where id=?";
 					PreparedStatement stmt = con.prepareStatement(sql);
-					
-
 					stmt.setString(1, id.getText());
 
 			
-					stmt.execute();
-					
+					stmt.execute();					
 					stmt.close();
 					con.close();
 					JOptionPane.showMessageDialog(null, "Usuario excluido com sucesso!!!");
